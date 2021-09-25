@@ -1,0 +1,37 @@
+crear una migracion:       php artisan make:migration create_peliculas_table   
+crar un modelo:            php artisan make:model Pelicula
+crear componente liviwire: php artisan make:livewire peliculas
+
+
+
+php artisan make:migration create_ventas_table   
+php artisan make:model Venta
+php artisan make:livewire ventas
+
+php artisan make:migration create_listapeliculas_table   
+php artisan make:model ListaPelicula
+php artisan make:livewire listapeliculas
+
+php artisan make:migration create_peliculas_table   
+php artisan make:model Pelicula
+php artisan make:livewire peliculas
+
+php artisan make:migration create_tipopagos_table   
+php artisan make:model Tipopago
+php artisan make:livewire tipopagos
+
+php artisan make:migration create_generos_table   
+php artisan make:model Genero
+php artisan make:livewire generos
+
+php artisan make:migration create_directors_table   
+php artisan make:model Director
+php artisan make:livewire directors
+
+php artisan make:migration create_repartos_table   
+php artisan make:model Reparto
+php artisan make:livewire repartos
+
+php artisan make:migration create_actors_table   
+php artisan make:model Actor
+php artisan make:livewire actors
