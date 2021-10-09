@@ -1,0 +1,48 @@
+email: administrator@brackets.sk
+Admin password is: rsXzze6w2V
+
+https://www.youtube.com/watch?v=Xb3iMSfmJ1k&ab_channel=Inform%C3%A1ticaDP
+
+https://getcraftable.com/docs/7.0/installation#login
+
+https://getcraftable.com/docs/7.0/crud-generator
+
+php artisan make:migration create_ventas_table   
+php artisan admin:generate ventas
+npm run dev
+
+php artisan make:migration create_listapeliculas_table   
+php artisan admin:generate listapeliculas
+npm run dev
+
+php artisan make:migration create_peliculas_table   
+php artisan admin:generate peliculas
+npm run dev
+
+php artisan make:migration create_tipopagos_table   
+php artisan admin:generate tipopagos
+npm run dev
+
+php artisan make:migration create_generos_table   
+php artisan admin:generate generos
+npm run dev
+
+php artisan make:migration create_directors_table   
+php artisan admin:generate directors
+npm run dev
+
+php artisan make:migration create_repartos_table   
+php artisan admin:generate repartos
+npm run dev
+
+php artisan make:migration create_actors_table   
+php artisan admin:generate actors
+npm run dev
+
+php artisan make:migration add_forenkey_to_reparto
+
+php artisan make:migration add_forenkey_to_peliculas
+
+php artisan make:migration add_forenkey_to_listapeliculas
+
+php artisan make:migration add_forenkey_to_ventas
