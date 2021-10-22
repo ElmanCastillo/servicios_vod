@@ -9,3 +9,7 @@ import './pelicula';
 import './director';
 import './listapelicula';
 import './venta';
+import './role';
+import './cliente';
+import './suscriptore';
+import './user';
