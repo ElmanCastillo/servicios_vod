@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\User\DestroyUser;
 use App\Http\Requests\Admin\User\IndexUser;
 use App\Http\Requests\Admin\User\StoreUser;
 use App\Http\Requests\Admin\User\UpdateUser;
+use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
@@ -15,9 +16,11 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Config;
 use Illuminate\View\View;
 
 class UsersController extends Controller
@@ -29,6 +32,9 @@ class UsersController extends Controller
      * @param IndexUser $request
      * @return array|Factory|View
      */
+
+    protected $guard = 'web';
+
     public function index(IndexUser $request)
     {
         // create and AdminListing instance for a specific model and
@@ -65,7 +71,11 @@ class UsersController extends Controller
     {
         $this->authorize('admin.user.create');
 
-        return view('admin.user.create');
+        //return view('admin.user.create');
+        return view('admin.user.create', [
+            'activation' => Config::get('admin-auth.activation_enabled'),
+            'roles' => Role::where('guard_name', $this->guard)->get(),
+        ]);
     }
 
     /**
@@ -76,11 +86,16 @@ class UsersController extends Controller
      */
     public function store(StoreUser $request)
     {
-        // Sanitize input
-        $sanitized = $request->getSanitized();
+       
+         // Sanitize input
+         $sanitized = $request->getModifiedData();
 
         // Store the User
         $user = User::create($sanitized);
+
+        // But we do have a roles, so we need to attach the roles to the user
+        $user->roles()->sync(collect($request->input('roles', []))->map->id->toArray());
+
 
         if ($request->ajax()) {
             return ['redirect' => url('admin/users'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
@@ -114,10 +129,14 @@ class UsersController extends Controller
     {
         $this->authorize('admin.user.edit', $user);
 
+        $user->load('roles');
 
         return view('admin.user.edit', [
             'user' => $user,
+            'activation' => Config::get('admin-auth.activation_enabled'),
+            'roles' => Role::where('guard_name', $this->guard)->get(),
         ]);
+        
     }
 
     /**
@@ -134,6 +153,8 @@ class UsersController extends Controller
 
         // Update changed values User
         $user->update($sanitized);
+        // But we do have a roles, so we need to attach the roles to the user
+        $user->roles()->sync(collect($request->input('roles', []))->map->id->toArray());
 
         if ($request->ajax()) {
             return [

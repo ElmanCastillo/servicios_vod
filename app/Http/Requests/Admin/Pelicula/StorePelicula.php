@@ -28,9 +28,11 @@ class StorePelicula extends FormRequest
         return [
             'nombre' => ['required', 'string'],
             'descripcion' => ['required', 'string'],
-            'duracion' => ['required', 'string'],
-            'genero_id' => ['required', 'integer'],
-            'director_id' => ['required', 'integer'],
+            'duracion' => ['required', 'integer'],
+            'url' => ['required', 'string'],
+            'thumb' => ['required', 'string'],
+            'genero_id' => ['required', 'string'],
+            'director_id' => ['required', 'string'],
             
         ];
     }

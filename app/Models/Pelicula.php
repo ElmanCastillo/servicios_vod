@@ -6,12 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pelicula extends Model
 {
+    protected $table = 'peliculas';
     protected $fillable = [
         'nombre',
         'descripcion',
         'duracion',
         'genero_id',
         'director_id',
+        'url',
+        'thumb',
     
     ];
     

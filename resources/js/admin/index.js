@@ -13,3 +13,5 @@ import './role';
 import './cliente';
 import './suscriptore';
 import './user';
+import './permission';
+import './rol';

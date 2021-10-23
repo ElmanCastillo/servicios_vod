@@ -112,6 +112,9 @@ return [
             'duracion' => 'Duracion',
             'genero_id' => 'Genero',
             'director_id' => 'Director',
+            'url' => 'Url',
+            'thumb' => 'Thumb',
+            
             
         ],
     ],
@@ -278,6 +281,57 @@ return [
             //Belongs to many relations
             'roles' => 'Roles',
                 
+        ],
+    ],
+
+    'permission' => [
+        'title' => 'Permissions',
+
+        'actions' => [
+            'index' => 'Permissions',
+            'create' => 'New Permission',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+            'guard_name' => 'Guard name',
+            
+        ],
+    ],
+
+    'user' => [
+        'title' => 'Users',
+
+        'actions' => [
+            'index' => 'Users',
+            'create' => 'New User',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+            'email' => 'Email',
+            'email_verified_at' => 'Email verified at',
+            'password' => 'Password',
+            
+        ],
+    ],
+
+    'rol' => [
+        'title' => 'Rols',
+
+        'actions' => [
+            'index' => 'Rols',
+            'create' => 'New Rol',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            
         ],
     ],
 

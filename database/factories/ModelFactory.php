@@ -158,3 +158,37 @@ $factory->define(App\Models\Suscriptore::class, static function (Faker\Generator
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Permission::class, static function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName,
+        'guard_name' => $faker->sentence,
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Rol::class, static function (Faker\Generator $faker) {
+    return [
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Pelicula::class, static function (Faker\Generator $faker) {
+    return [
+        'nombre' => $faker->sentence,
+        'descripcion' => $faker->sentence,
+        'duracion' => $faker->randomNumber(5),
+        'url' => $faker->sentence,
+        'thumb' => $faker->sentence,
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        'genero_id' => $faker->sentence,
+        'director_id' => $faker->sentence,
+        
+        
+    ];
+});

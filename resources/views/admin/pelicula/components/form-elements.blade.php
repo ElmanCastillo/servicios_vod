@@ -17,8 +17,24 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('duracion'), 'has-success': fields.duracion && fields.duracion.valid }">
     <label for="duracion" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.pelicula.columns.duracion') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.duracion" v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('duracion'), 'form-control-success': fields.duracion && fields.duracion.valid}" id="duracion" name="duracion" placeholder="{{ trans('admin.pelicula.columns.duracion') }}">
+        <input type="text" v-model="form.duracion" v-validate="'required|integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('duracion'), 'form-control-success': fields.duracion && fields.duracion.valid}" id="duracion" name="duracion" placeholder="{{ trans('admin.pelicula.columns.duracion') }}">
         <div v-if="errors.has('duracion')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('duracion') }}</div>
+    </div>
+</div>
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('url'), 'has-success': fields.url && fields.url.valid }">
+    <label for="url" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.pelicula.columns.url') }}</label>
+        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <input type="text" v-model="form.url" v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('url'), 'form-control-success': fields.url && fields.url.valid}" id="url" name="url" placeholder="{{ trans('admin.pelicula.columns.url') }}">
+        <div v-if="errors.has('url')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('url') }}</div>
+    </div>
+</div>
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('thumb'), 'has-success': fields.thumb && fields.thumb.valid }">
+    <label for="thumb" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.pelicula.columns.thumb') }}</label>
+        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <input type="text" v-model="form.thumb" v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('thumb'), 'form-control-success': fields.thumb && fields.thumb.valid}" id="thumb" name="thumb" placeholder="{{ trans('admin.pelicula.columns.thumb') }}">
+        <div v-if="errors.has('thumb')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('thumb') }}</div>
     </div>
 </div>
 

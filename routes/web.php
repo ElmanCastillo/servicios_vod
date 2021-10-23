@@ -279,3 +279,63 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         Route::post('/password',                                    'ProfileController@updatePassword')->name('update-password');
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('permissions')->name('permissions/')->group(static function() {
+            Route::get('/',                                             'PermissionsController@index')->name('index');
+            Route::get('/create',                                       'PermissionsController@create')->name('create');
+            Route::post('/',                                            'PermissionsController@store')->name('store');
+            Route::get('/{permission}/edit',                            'PermissionsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'PermissionsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{permission}',                                'PermissionsController@update')->name('update');
+            Route::delete('/{permission}',                              'PermissionsController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('users')->name('users/')->group(static function() {
+            Route::get('/',                                             'UsersController@index')->name('index');
+            Route::get('/create',                                       'UsersController@create')->name('create');
+            Route::post('/',                                            'UsersController@store')->name('store');
+            Route::get('/{user}/edit',                                  'UsersController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'UsersController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{user}',                                      'UsersController@update')->name('update');
+            Route::delete('/{user}',                                    'UsersController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('rols')->name('rols/')->group(static function() {
+            Route::get('/',                                             'RolsController@index')->name('index');
+            Route::get('/create',                                       'RolsController@create')->name('create');
+            Route::post('/',                                            'RolsController@store')->name('store');
+            Route::get('/{rol}/edit',                                   'RolsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'RolsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{rol}',                                       'RolsController@update')->name('update');
+            Route::delete('/{rol}',                                     'RolsController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('peliculas')->name('peliculas/')->group(static function() {
+            Route::get('/',                                             'PeliculasController@index')->name('index');
+            Route::get('/create',                                       'PeliculasController@create')->name('create');
+            Route::post('/',                                            'PeliculasController@store')->name('store');
+            Route::get('/{pelicula}/edit',                              'PeliculasController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'PeliculasController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{pelicula}',                                  'PeliculasController@update')->name('update');
+            Route::delete('/{pelicula}',                                'PeliculasController@destroy')->name('destroy');
+        });
+    });
+});

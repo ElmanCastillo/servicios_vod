@@ -11,13 +11,16 @@ class CreatePeliculasTable extends Migration
      *
      * @return void
      */
+    
     public function up()
     {
         Schema::create('peliculas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre',50);
             $table->string('descripcion',300);
-            $table->string('duracion',50);
+            $table->integer('duracion');
+            $table->string('url',100);
+            $table->string('thumb',100);
             $table->timestamps();
         });
     }

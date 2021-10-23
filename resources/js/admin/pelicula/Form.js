@@ -8,8 +8,10 @@ Vue.component('pelicula-form', {
                 nombre:  '' ,
                 descripcion:  '' ,
                 duracion:  '' ,
-                genero_id: [] ,
-                director_id:  [],
+                url:  '' ,
+                thumb:  '' ,
+                genero_id:  '' ,
+                director_id:  '' ,
                 
             }
         }

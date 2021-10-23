@@ -25,7 +25,7 @@ class IndexPelicula extends FormRequest
     public function rules(): array
     {
         return [
-            'orderBy' => 'in:id,nombre,descripcion,duracion,genero_id,director_id|nullable',
+            'orderBy' => 'in:id,nombre,descripcion,duracion,url,thumb,genero_id,director_id|nullable',
             'orderDirection' => 'in:asc,desc|nullable',
             'search' => 'string|nullable',
             'page' => 'integer|nullable',

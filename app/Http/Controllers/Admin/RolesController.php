@@ -19,6 +19,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use Spatie\Permission\Models\Permission;
 
 class RolesController extends Controller
 {
@@ -114,10 +115,13 @@ class RolesController extends Controller
     {
         $this->authorize('admin.role.edit', $role);
 
+        $permission = Permission::get();
+        $rolePermissions = DB::table('role_has_permissions')
+            ->where('role_has_permissions.role_id', $role)
+            ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
+            ->all();
 
-        return view('admin.role.edit', [
-            'role' => $role,
-        ]);
+        return view('admin.role.edit', compact('role', 'permission', 'rolePermissions'));
     }
 
     /**
@@ -134,6 +138,13 @@ class RolesController extends Controller
 
         // Update changed values Role
         $role->update($sanitized);
+    
+        //$role->syncPermissions($request->input('permission'));
+        // But we do have a roles, so we need to attach the roles to the adminUser
+        if ($request->input('permission')) {
+            $rol = \Spatie\Permission\Models\Role::find($role);
+            $rol->syncPermissions(collect($request->input('permission', []))->map->id->toArray());
+        }
 
         if ($request->ajax()) {
             return [

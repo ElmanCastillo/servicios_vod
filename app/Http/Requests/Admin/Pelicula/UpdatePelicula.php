@@ -28,9 +28,11 @@ class UpdatePelicula extends FormRequest
         return [
             'nombre' => ['sometimes', 'string'],
             'descripcion' => ['sometimes', 'string'],
-            'duracion' => ['sometimes', 'string'],
-            'genero_id' => ['sometimes', 'integer'],
-            'director_id' => ['sometimes', 'integer'],
+            'duracion' => ['sometimes', 'integer'],
+            'url' => ['sometimes', 'string'],
+            'thumb' => ['sometimes', 'string'],
+            'genero_id' => ['sometimes', 'string'],
+            'director_id' => ['sometimes', 'string'],
             
         ];
     }

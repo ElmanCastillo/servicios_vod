@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,25 +22,28 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'email_verified_at',
         'password',
+    
     ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
+    
     protected $hidden = [
         'password',
         'remember_token',
+    
     ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
+    
+    protected $dates = [
+        'email_verified_at',
+        'created_at',
+        'updated_at',
+    
     ];
+    protected $appends = ['resource_url'];
+    
+    /* ************************ ACCESSOR ************************* */
+    public function getResourceUrlAttribute()
+    {
+        return url('/admin/users/'.$this->getKey());
+    }
 }

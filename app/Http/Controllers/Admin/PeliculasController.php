@@ -39,10 +39,10 @@ class PeliculasController extends Controller
             $request,
 
             // set columns to query
-            ['id', 'nombre', 'descripcion', 'duracion', 'genero_id', 'director_id'],
+            ['id', 'nombre', 'descripcion', 'duracion', 'url', 'thumb', 'genero_id', 'director_id'],
 
             // set columns to searchIn
-            ['id', 'nombre', 'descripcion', 'duracion']
+            ['id', 'nombre', 'descripcion', 'url', 'thumb']
         );
 
         if ($request->ajax()) {
@@ -70,7 +70,6 @@ class PeliculasController extends Controller
         $director = Director::all();
         //dd($genero);
         return view('admin.pelicula.create',['generos' => $genero],['directors' => $director]);
-
     }
 
     /**
