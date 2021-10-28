@@ -161,7 +161,7 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">INICIO</a></li>
+						<li class="active"><a href="/">INICIO</a></li>
 						<li><a href="#">TOP 10</a></li>
 						<li><a href="#">CATEGORIAS</a></li>
 						<li><a href="#">A CERCA DE</a></li>

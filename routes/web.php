@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('permissions', PermissionController::class);
     Route::resource('posts', PostController::class);
     Route::resource('movies', MovieController::class);
+});
+
+
+Route::get('/paypal/pay',[PaymentController::class, 'payWithPayPal'])->name('payWithPayPal');
+Route::get('/paypal/status',[PaymentController::class, 'payPalStatus'])->name('payPalStatus');
+Route::get('/paypal/results', function () {
+    return view('paypal.results');
 });
 
 /* Auto-generated admin routes */
