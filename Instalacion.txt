@@ -50,3 +50,11 @@ php artisan make:migration add_forenkey_to_peliculas
 php artisan make:migration add_forenkey_to_listapeliculas
 
 php artisan make:migration add_forenkey_to_ventas
+
+php artisan make:migration create_permissions_table   
+php artisan admin:generate permissions
+npm run dev
+
+php artisan make:migration create_rols_table   
+php artisan admin:generate rols
+npm run dev
