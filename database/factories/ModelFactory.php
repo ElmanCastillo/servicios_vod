@@ -192,3 +192,19 @@ $factory->define(App\Models\Pelicula::class, static function (Faker\Generator $f
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Pelicula::class, static function (Faker\Generator $faker) {
+    return [
+        'nombre' => $faker->sentence,
+        'descripcion' => $faker->text(),
+        'duracion' => $faker->randomNumber(5),
+        'url' => $faker->text(),
+        'thumb' => $faker->text(),
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        'genero_id' => $faker->sentence,
+        'director_id' => $faker->sentence,
+        
+        
+    ];
+});

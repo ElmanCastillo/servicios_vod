@@ -9,13 +9,16 @@ class Suscriptore extends Model
     protected $fillable = [
         'estado',
         'users_id',
+        'suscripcion',
     
     ];
+   
     
     
     protected $dates = [
         'created_at',
         'updated_at',
+        'suscripcion',
     
     ];
     

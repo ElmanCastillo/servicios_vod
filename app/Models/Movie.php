@@ -18,4 +18,10 @@ class Movie extends Model
         'thumb',
     
     ];
+
+       //Consulta con la llave foranea "generos"
+	public function genero()
+	{
+        return $this->belongsTo(Genero::class);
+	}
 }

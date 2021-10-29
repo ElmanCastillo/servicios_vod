@@ -31,8 +31,8 @@ class UpdatePelicula extends FormRequest
             'duracion' => ['sometimes', 'integer'],
             'url' => ['sometimes', 'string'],
             'thumb' => ['sometimes', 'string'],
-            'genero_id' => ['sometimes', 'string'],
-            'director_id' => ['sometimes', 'string'],
+            'genero_id' => ['sometimes', 'integer'],
+            'director_id' => ['sometimes', 'integer'],
             
         ];
     }

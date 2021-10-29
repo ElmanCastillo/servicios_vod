@@ -1,47 +1,52 @@
 @extends('layouts.app')
 @section('content')
+<!-- Products tab & slick -->
+<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab2" class="tab-pane fade in active">
+									<div class="products-slick" data-nav="#slick-nav-2">
+                                    @foreach ($data as $key => $movie)
+                                        <!-- product -->
+										<div class="product">
+                                        <a href="{{ route('movies.show',$movie->id) }}">
+											<div class="product-img">
+												<img src="{{ $movie->thumb }}" alt="{{ $movie->descripcion }}">
+												
+                                                <div class="product-label">
+													<span class="new">NEW</span>
+												</div>
+											</div>
+                                            </a>
+											<div class="product-body">
+												<p class="product-category">{{ $movie->genero->genero }}</p>
+												<h3 class="product-name"><a href="#">{{ $movie->nombre }}</a></h3>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button class="quick-view"><i class="fa fa-eye"></i> <a href="{{ route('movies.show',$movie->id) }}"><span class="tooltipp">Ver ahora</span></a></button>
+												</div>
+											</div>
+										</div>
+										<!-- /product -->
+                                        @endforeach
+
+                                        {{ $data->appends($_GET)->links() }}
+                                    </div>
+									<div id="slick-nav-2" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>                                   
 <div class="container">
-    <div class="justify-content-center">
-        @if (\Session::has('success'))
-            <div class="alert alert-success">
-                <p>{{ \Session::get('success') }}</p>
-            </div>
-        @endif
-        <div class="card">
-            <div class="card-header">movies
-                @can('movie-create')
-                    <span class="float-right">
-                        <a class="btn btn-primary" href="{{ route('movies.create') }}">New movie</a>
-                    </span>
-                @endcan
-            </div>
-            <div class="card-body">
-                <table class="table table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th width="280px">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $key => $movie)
-                            <tr>
-                                <td>{{ $movie->id }}</td>
-                                <td>{{ $movie->nombre }}</td>
-                                <td>
-                                    <a class="btn btn-success" href="{{ route('movies.show',$movie->id) }}">Add a Deseos</a>
-                                    @can('movie-edit')
-                                        <a class="btn btn-primary" href="{{ route('movies.edit',$movie->id) }}">Ver Ahora</a>
-                                    @endcan
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                {{ $data->appends($_GET)->links() }}
-            </div>
-        </div>
-    </div>
+    
 </div>
 @endsection

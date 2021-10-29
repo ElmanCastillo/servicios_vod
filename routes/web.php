@@ -20,13 +20,15 @@ use App\Http\Controllers\PaymentController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/test', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard',[MovieController::class, 'index'])->name('index');
+
 Auth::routes();
 
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/', [HomeController::class, 'index'])->name('/');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
@@ -34,14 +36,15 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('permissions', PermissionController::class);
     Route::resource('posts', PostController::class);
     Route::resource('movies', MovieController::class);
+    Route::get('/paypal/pay',[PaymentController::class, 'payWithPayPal'])->name('payWithPayPal');
+    Route::get('/paypal/status',[PaymentController::class, 'payPalStatus'])->name('payPalStatus');
+    Route::get('/paypal/results', function () {
+        return view('paypal.results');
+    });
 });
 
 
-Route::get('/paypal/pay',[PaymentController::class, 'payWithPayPal'])->name('payWithPayPal');
-Route::get('/paypal/status',[PaymentController::class, 'payPalStatus'])->name('payPalStatus');
-Route::get('/paypal/results', function () {
-    return view('paypal.results');
-});
+
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'Suscriptores'])->group(static function () {
@@ -331,6 +334,21 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::post('/bulk-destroy',                                'RolsController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{rol}',                                       'RolsController@update')->name('update');
             Route::delete('/{rol}',                                     'RolsController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('peliculas')->name('peliculas/')->group(static function() {
+            Route::get('/',                                             'PeliculasController@index')->name('index');
+            Route::get('/create',                                       'PeliculasController@create')->name('create');
+            Route::post('/',                                            'PeliculasController@store')->name('store');
+            Route::get('/{pelicula}/edit',                              'PeliculasController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'PeliculasController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{pelicula}',                                  'PeliculasController@update')->name('update');
+            Route::delete('/{pelicula}',                                'PeliculasController@destroy')->name('destroy');
         });
     });
 });

@@ -104,10 +104,6 @@
 								<form>
 									<select class="input-select">
 										<option value="0">Categorias</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
 									</select>
 									<input class="input" placeholder="Busque Aqui">
 									<button class="search-btn">Buscar</button>
@@ -172,9 +168,7 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
-
-		@yield('content2')
-		@yield('content3')
+        @yield('content')
 
 		<!-- NEWSLETTER -->
 		<div id="newsletter" class="section">

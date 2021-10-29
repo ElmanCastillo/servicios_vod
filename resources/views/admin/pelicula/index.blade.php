@@ -82,10 +82,10 @@
 
                                     <td>@{{ item.id }}</td>
                                         <td>@{{ item.nombre }}</td>
-                                        <td>@{{ item.descripcion }}</td>
+                                        <td>@{{ item.descripcion.substring(0,10)+"..."  }}</td>
                                         <td>@{{ item.duracion }}</td>
-                                        <td>@{{ item.url }}</td>
-                                        <td>@{{ item.thumb }}</td>
+                                        <td>@{{ item.url.substring(0,10)+"..."   }}</td>
+                                        <td>@{{ item.thumb.substring(0,10)+"..."   }}</td>
                                         <td>@{{ item.genero_id }}</td>
                                         <td>@{{ item.director_id }}</td>
                                         

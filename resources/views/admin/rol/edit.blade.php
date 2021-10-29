@@ -23,13 +23,7 @@
                     <div class="card-body">
                         @include('admin.rol.components.form-elements')
                     </div>
-                    @foreach($permission as $value)
-                            <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name')) }}
-                            {{ $value->name }}</label>
-                        <br/>
-                        @endforeach
-                    
-                    
+         
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary" :disabled="submiting">
                             <i class="fa" :class="submiting ? 'fa-spinner' : 'fa-download'"></i>

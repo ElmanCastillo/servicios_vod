@@ -17,10 +17,10 @@ class CreatePeliculasTable extends Migration
         Schema::create('peliculas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre',50);
-            $table->string('descripcion',300);
+            $table->longText('descripcion');
             $table->integer('duracion');
-            $table->string('url',100);
-            $table->string('thumb',100);
+            $table->longText('url');
+            $table->longText('thumb');
             $table->timestamps();
         });
     }

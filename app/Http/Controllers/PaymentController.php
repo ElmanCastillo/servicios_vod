@@ -20,6 +20,10 @@ use PayPal\Api\PaymentExecution;
 use Illuminate\Support\Facades\Input;
 use Redirect;
 use URL;
+use App\Models\Suscriptore;
+use App\Models\Venta;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -82,7 +86,7 @@ class PaymentController extends Controller
         $token = $request->input('token');
 
         if (!$paymentId || !$payerId || !$token) {
-            return redirect('/paypal/results')->with('success2', 'Lo sentimos! El pago a través de PayPal no se pudo realizar.');
+            return redirect('/paypal/results')->with('success2', 'Lo sentimos! El pago a traves de PayPal no se pudo realizar.');
         }
 
         $payment = Payment::get($paymentId, $this->apiContext);
@@ -95,10 +99,24 @@ class PaymentController extends Controller
 
         if ($result->getState() === 'approved') {
 			//dd($$result);
-            return redirect('/paypal/results')->with('success', 'Gracias! El pago a través de PayPal se ha ralizado correctamente.');
+            $date1 = Carbon::now()->format('Y-m-d');
+            $suscr = Carbon::now()->add(30, 'day')->format('Y-m-d'); //agregar 30 dias
+            $userlog = Auth::user()->id ;
+            $suscriptore = Suscriptore::updateOrCreate(
+                ['estado' => '1', 'users_id' => $userlog],
+                ['suscripcion' => $suscr]
+            );
+            $venta = new Venta;
+            $venta->valor = '3.99';
+            $venta->fecha = $date1;
+            $venta->users_id = $userlog;
+            $venta->estado = '1';
+            $venta->tipopagos_id = 1;
+            $venta->save();
+            return redirect('/paypal/results')->with('success', 'Gracias! El pago a traves de PayPal se ha ralizado correctamente.');
         }
 
-        return redirect('/paypal/results')->with('success2', 'Lo sentimos! El pago a través de PayPal no se pudo realizar.');
+        return redirect('/paypal/results')->with('success2', 'Lo sentimos! El pago a traves de PayPal no se pudo realizar.');
     }
 	
 }

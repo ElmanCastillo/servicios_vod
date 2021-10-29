@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Genero;
 use App\Models\Post;
 use App\Models\Movie;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
+use App\Models\Suscriptore;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class MovieController extends Controller
 {
     /**
@@ -25,8 +29,13 @@ class MovieController extends Controller
     public function index()
     {
         $data = Movie::latest()->paginate(5);
+        $datas = Movie::all();
 
-        return view('movies.index',compact('data'));
+        $date1 = Carbon::now()->format('d-m-Y');
+        $date2 = Carbon::now()->add(30, 'day')->format('d-m-Y'); //agregar 30 dias
+        //dd($date2);
+
+        return view('movies.index', compact('data'),compact('datas'));
     }
 
     /**
@@ -56,9 +65,27 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function show(Movie $movie)
+    public function show($id)
     {
-        //
+        $suscriptor_valido = 0;
+        $date1 = Carbon::now()->format('Y-m-d');
+        $datas = Movie::all();
+        $data = Movie::find($id);
+        $userlog = Auth::user()->id ;
+        if($suscriptor = DB::table('suscriptores')->where('users_id', $userlog)->first()!=null)
+        {
+            $suscriptor = DB::table('suscriptores')->where('users_id', $userlog)->first();
+           // dd($suscriptor->suscripcion);
+            $fecha1 = Carbon::parse($suscriptor->suscripcion);
+            //dd($suscriptor->suscripcion);
+            if($fecha1->gt($date1)){
+                $suscriptor_valido = 1;
+            }
+
+        }
+        
+        
+        return view('movies.show', compact('data'),compact('datas'))->with('suscriptor_validos',$suscriptor_valido);
     }
 
     /**
@@ -94,4 +121,5 @@ class MovieController extends Controller
     {
         //
     }
+
 }

@@ -105,11 +105,10 @@
 							<div class="header-search">
 								<form>
 									<select class="input-select">
-										<option value="0">Categorias</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
+									    <option value="0">Categorias</option>
+									@foreach ($datas as $key => $movie)
+										<option value="{{ $movie->genero->id }}">{{ $movie->genero->genero }}</option>
+								    @endforeach
 									</select>
 									<input class="input" placeholder="Busque Aqui">
 									<button class="search-btn">Buscar</button>
